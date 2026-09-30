@@ -1,8 +1,13 @@
+import sys
+
 import cv2
 import numpy as np
 
+image_path = (sys.argv[1:2] or ["./polka.png"])[0]
+print(image_path)
+
 # Load image
-image = cv2.imread("./polka.png", cv2.IMREAD_GRAYSCALE)
+image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
 # Setup SimpleBlobDetector parameters
 params = cv2.SimpleBlobDetector_Params()
@@ -38,7 +43,7 @@ output = cv2.drawKeypoints(image, keypoints, np.array([]), (0, 0, 255),
                            cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
 # write output
-cv2.imwrite("polka_blobs.png", output)
+cv2.imwrite(image_path.replace(".png", "_blobs.png"), output)
 
 # Show the output
 cv2.imshow("Blobs Detected", output)
