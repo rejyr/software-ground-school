@@ -12,9 +12,11 @@ image = cv2.imread(image_path)
 # Setup SimpleBlobDetector parameters
 params = cv2.SimpleBlobDetector_Params()
 
+params.filterByColor = 0
+
 # Thresholds for binarization
-params.minThreshold = 10
-params.maxThreshold = 200
+params.minThreshold = 1
+params.maxThreshold = 255
 
 # Filter by Area
 params.filterByArea = True
